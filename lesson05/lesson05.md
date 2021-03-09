@@ -4,7 +4,7 @@
 2) Написать ETL процесс для загрузки ВСЕХ таблиц из postgres-источника в postgres-приемник
 
 #### Решение
-Создаем [файл](https://github.com/bostspb/etl/blob/main/docker-compose.yml) под Docker Compose для развертывания двух контейнеров с Postgres 11.
+Создаем [файл](https://github.com/bostspb/etl/blob/main/lesson05/docker-compose.yml) под Docker Compose для развертывания двух контейнеров с Postgres 11.
 
 Запускаем наши контейнеры из директории с файлом
 
@@ -50,7 +50,7 @@
     docker exec -it etl_postgres_01 psql benchmark_db -c "\copy region FROM '/region.tbl' CSV DELIMITER '|'"
     docker exec -it etl_postgres_01 psql benchmark_db -c "\copy supplier FROM '/supplier.tbl' CSV DELIMITER '|'"  
 
-Пишем [скрипт](https://github.com/bostspb/etl/blob/main/etl.py) переброски данных из первой БД во вторую через промежуточное создание CSV-файлов с данными 
+Пишем [скрипт](https://github.com/bostspb/etl/blob/main/lesson05/etl.py) переброски данных из первой БД во вторую через промежуточное создание CSV-файлов с данными 
 
 Скрипт отрабатывает успешно - сначала формируются файлы с данными из первой БД под каждую таблицу, 
 потом они загружаются во вторую БД.
