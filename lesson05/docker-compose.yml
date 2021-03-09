@@ -1,0 +1,24 @@
+version: "3"
+services:
+  db01:
+    image: "postgres:11"
+    container_name: "etl_postgres_01"
+    ports:
+      - "54320:5432"
+    volumes:
+      - etl_dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=root
+  db02:
+    image: "postgres:11"
+    container_name: "etl_postgres_02"
+    ports:
+      - "5433:5432"
+    volumes:
+      - etl_dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=root
+volumes:
+  etl_dbdata:
