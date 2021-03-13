@@ -1,0 +1,11 @@
+#!/bin/bash
+psql -U root -c "create database benchmark_db;"
+psql benchmark_db -f /root/tables/dss.ddl
+psql benchmark_db -c "\copy customer FROM '/root/tables/customer.tbl' CSV DELIMITER '|'"
+psql benchmark_db -c "\copy lineitem FROM '/root/tables/lineitem.tbl' CSV DELIMITER '|'"
+psql benchmark_db -c "\copy nation FROM '/root/tables/nation.tbl' CSV DELIMITER '|'"
+psql benchmark_db -c "\copy orders FROM '/root/tables/orders.tbl' CSV DELIMITER '|'"
+psql benchmark_db -c "\copy part FROM '/root/tables/part.tbl' CSV DELIMITER '|'"
+psql benchmark_db -c "\copy partsupp FROM '/root/tables/partsupp.tbl' CSV DELIMITER '|'"
+psql benchmark_db -c "\copy region FROM '/root/tables/region.tbl' CSV DELIMITER '|'"
+psql benchmark_db -c "\copy supplier FROM '/root/tables/supplier.tbl' CSV DELIMITER '|'"

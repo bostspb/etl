@@ -1,0 +1,3 @@
+#!/bin/bash
+psql -U root -c "create database benchmark_db;"
+psql benchmark_db -f /root/tables/dss.ddl
