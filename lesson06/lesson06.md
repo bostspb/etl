@@ -17,6 +17,16 @@
 
     docker-compose up -d
 
+Заходим в консоль контейнера с первой базой и запускаем скрипт наполнения БД
+    
+    chmod ugo+x /root/tables/init_01
+    bash /root/tables/init_01
+
+Заходим в консоль контейнера со второй базой и запускаем скрипт создания схемы БД
+
+    chmod ugo+x /root/tables/init_02
+    bash /root/tables/init_02
+
 Пишем [DAG](https://github.com/bostspb/etl/blob/main/lesson06/dags/lesson06_dag.py) 
 для переброски данных из первой БД во втору. 
 В нем задействованы [операторы из урока](https://github.com/bostspb/etl/blob/main/lesson06/operators)

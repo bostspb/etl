@@ -1,7 +1,7 @@
+__pycache__
 /.idea
 /lesson05/tpch-kit/
 /lesson05/result_tables/
 /lesson05/tables/
-__pycache__
-/lesson06/tables/*.tbl
-/lesson06/tables/*.ddl
+/lesson06/tables/
+/coursework/tables/
