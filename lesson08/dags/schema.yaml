@@ -1,0 +1,210 @@
+dds:
+  hubs:
+    part:
+      bk_dtype: int
+    supplier:
+      bk_dtype: int
+    partsupp:
+      bk_dtype: varchar
+    lineitem:
+      bk_dtype: varchar
+    orders:
+      bk_dtype: int
+    customer:
+      bk_dtype: int
+    nation:
+      bk_dtype: int
+    region:
+      bk_dtype: int
+  satellites:
+    part:
+      bk_dtype: int
+      columns:
+        name: text
+        mfgr: text
+        brand: text
+        type: text
+        size: int
+        container: text
+        retailprice: numeric
+        comment: text
+    supplier:
+      bk_dtype: int
+      columns:
+        name: text
+        address: text
+        phone: text
+        acctbal: int
+        comment: text
+    partsupp:
+      bk_dtype: varchar
+      columns:
+        availqty: int
+        supplycost: numeric
+        comment: text
+    lineitem:
+      bk_dtype: varchar
+      columns:
+        linenumber: int
+        quantity: numeric
+        extendedprice: numeric
+        discount: numeric
+        tax: numeric
+        returnflag: text
+        linestatus: text
+        shipdate: date
+        commitdate: date
+        receiptdate: date
+        shipinstruct: text
+        shipmode: text
+        comment: text
+    orders:
+      bk_dtype: int
+      columns:
+        orderstatus: text
+        totalprice: numeric
+        orderdate: date
+        orderpriority: text
+        shippriority: int
+        clerk: text
+        comment: text
+    customer:
+      bk_dtype: int
+      columns:
+        name: text
+        address: text
+        phone: text
+        acctbal: numeric
+        mktsegment: text
+        comment: text
+    nation:
+      bk_dtype: int
+      columns:
+        name: text
+        comment: text
+    region:
+      bk_dtype: int
+      columns:
+        name: text
+        comment: text
+  links:
+    - l_hub_name: customer
+      r_hub_name: nation
+      l_bk_column: c_custkey
+      r_bk_column: c_nationkey
+    - l_hub_name: nation
+      r_hub_name: region
+      l_bk_column: n_nationkey
+      r_bk_column: n_regionkey
+    - l_hub_name: orders
+      r_hub_name: customer
+      l_bk_column: o_orderkey
+      r_bk_column: o_custkey
+    - l_hub_name: lineitem
+      r_hub_name: orders
+      l_bk_column: l_lineitemkey
+      r_bk_column: l_orderkey
+    - l_hub_name: lineitem
+      r_hub_name: part
+      l_bk_column: l_lineitemkey
+      r_bk_column: l_partkey
+    - l_hub_name: lineitem
+      r_hub_name: supplier
+      l_bk_column: l_lineitemkey
+      r_bk_column: l_suppkey
+    - l_hub_name: partsupp
+      r_hub_name: part
+      l_bk_column: ps_partsuppkey
+      r_bk_column: ps_partkey
+    - l_hub_name: partsupp
+      r_hub_name: supplier
+      l_bk_column: ps_partsuppkey
+      r_bk_column: ps_suppkey
+sources:
+  tables:
+    part:
+      prefix: p_
+      columns:
+      - p_partkey:
+          bk_for: part
+      - p_name: {}
+      - p_mfgr: {}
+      - p_brand: {}
+      - p_type: {}
+      - p_size: {}
+      - p_container: {}
+      - p_retailprice: {}
+      - p_comment: {}
+    supplier:
+      prefix: s_
+      columns:
+      - s_suppkey:
+          bk_for: supplier
+      - s_name: {}
+      - s_address: {}
+      - s_phone: {}
+      - s_acctbal: {}
+      - s_comment: {}
+    partsupp:
+      prefix: ps_
+      columns:
+      - ps_partsuppkey:
+          bk_for: partsupp
+      - ps_availqty: {}
+      - ps_supplycost: {}
+      - ps_comment: {}
+    lineitem:
+      prefix: l_
+      columns:
+      - l_lineitemkey:
+          bk_for: lineitem
+      - l_linenumber: {}
+      - l_quantity: {}
+      - l_extendedprice: {}
+      - l_discount: {}
+      - l_tax: {}
+      - l_returnflag: {}
+      - l_linestatus: {}
+      - l_shipdate: {}
+      - l_commitdate: {}
+      - l_receiptdate: {}
+      - l_shipinstruct: {}
+      - l_shipmode: {}
+      - l_comment: {}
+    orders:
+      prefix: o_
+      columns:
+      - o_orderkey:
+          bk_for: orders
+      - o_orderstatus: {}
+      - o_totalprice: {}
+      - o_orderdate: {}
+      - o_orderpriority: {}
+      - o_shippriority: {}
+      - o_clerk: {}
+      - o_comment: {}
+    customer:
+      prefix: c_
+      columns:
+      - c_custkey:
+          bk_for: customer
+      - c_name: {}
+      - c_address: {}
+      - c_phone: {}
+      - c_acctbal: {}
+      - c_mktsegment: {}
+      - c_comment: {}
+    nation:
+      prefix: n_
+      columns:
+      - n_nationkey:
+          bk_for: nation
+      - n_name: {}
+      - n_comment: {}
+    region:
+      prefix: r_
+      columns:
+      - r_regionkey:
+          bk_for: region
+      - r_name: {}
+      - r_comment: {}
